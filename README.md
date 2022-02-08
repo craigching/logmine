@@ -1,0 +1,7 @@
+
+
+## Building
+
+```
+$ brew install rapidjson
+```
