@@ -59,19 +59,6 @@ TEST_CASE( "should test token merging", "[merge]" ) {
     auto leftTokens = tokenize(left);
     auto rightTokens = tokenize(right);
 
-    auto out = merge(leftTokens, rightTokens);
-
-    REQUIRE(untokenize(out, " ") == "This is a WORD test");
-}
-
-TEST_CASE( "blah", "[merge]" ) {
-
-    std::string left{"This is a good test"};
-    std::string right{"This is a bad test"};
-
-    auto leftTokens = tokenize(left);
-    auto rightTokens = tokenize(right);
-
     auto [leftOut, rightOut] = align2<Token>(leftTokens, rightTokens, Gap("-"), match<Token>);
 
     auto out = merge(leftOut, rightOut);

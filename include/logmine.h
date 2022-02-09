@@ -50,6 +50,8 @@ public:
         ++size_;
         auto [leftOut, rightOut] = align2<Token>(rep, log, Gap("-"), score<Token>);
 
+        std::vector<Token> merged = merge(leftOut, rightOut);
+
         std::cout << "leftOut: " << untokenize(leftOut, " ") << ", rightOut: " << untokenize(rightOut, " ") << std::endl;
     }
 

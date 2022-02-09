@@ -17,10 +17,14 @@ target_compile_options(logmine PRIVATE -Wno-unknown-warning-option -Wno-tautolog
 
 find_package(Catch2 REQUIRED)
 
-add_executable(tests tests/src/tests.cpp)
-target_include_directories(tests PUBLIC /usr/local/Cellar/catch2/2.13.4/include "${PROJECT_SOURCE_DIR}/include")
-target_link_libraries(tests PRIVATE Catch2::Catch2)
+add_executable(logmine_tests tests/src/logmine_tests.cpp)
+target_include_directories(logmine_tests PUBLIC /usr/local/Cellar/catch2/2.13.4/include "${PROJECT_SOURCE_DIR}/include")
+target_link_libraries(logmine_tests PRIVATE Catch2::Catch2)
 
 add_executable(align_tests tests/src/align_tests.cpp)
 target_include_directories(align_tests PUBLIC /usr/local/Cellar/catch2/2.13.4/include "${PROJECT_SOURCE_DIR}/include")
 target_link_libraries(align_tests PRIVATE Catch2::Catch2)
+
+add_executable(tokens_tests tests/src/tokens_tests.cpp)
+target_include_directories(tokens_tests PUBLIC /usr/local/Cellar/catch2/2.13.4/include "${PROJECT_SOURCE_DIR}/include")
+target_link_libraries(tokens_tests PRIVATE Catch2::Catch2)
