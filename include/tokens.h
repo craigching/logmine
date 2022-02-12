@@ -119,7 +119,17 @@ auto merge(std::vector<Token> l, std::vector<Token> r) -> std::vector<Token> {
 
         if ((*lToken).token_type() == Tokens::Text && (*rToken).token_type() == Tokens::Text && (*lToken).to_str() != (*rToken).to_str()) {
             merged.push_back(Word{});
-            found = true;
+            continue;
+        }
+
+        if ((*lToken).token_type() == Tokens::Word && (*rToken).token_type() == Tokens::Text) {
+            merged.push_back(Word{});
+            continue;
+        }
+
+        if ((*rToken).token_type() == Tokens::Word && (*lToken).token_type() == Tokens::Text) {
+            merged.push_back(Word{});
+            continue;
         }
         
         if (!found) {

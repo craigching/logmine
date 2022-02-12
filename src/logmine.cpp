@@ -12,7 +12,6 @@ auto success(const sajson::document& doc) -> bool {
 }
 
 auto main(int argc, char* argv[]) -> int {
-    std::cout << "Hello, World!" << std::endl;
 
     auto logs = std::string{R"([
         { "message": "2020-09-06T16:00:00 Disconnected from broker broker1" },

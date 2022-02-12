@@ -36,7 +36,7 @@ auto distance(const std::vector<Token>& log1, const std::vector<Token>& log2) ->
 
 class Cluster {
 
-    const std::vector<Token> rep;
+    std::vector<Token> rep;
     int size_;
 
 public:
@@ -52,11 +52,15 @@ public:
 
         std::vector<Token> merged = merge(leftOut, rightOut);
 
-        std::cout << "leftOut: " << untokenize(leftOut, " ") << ", rightOut: " << untokenize(rightOut, " ") << std::endl;
+        rep = merged;
     }
 
-    auto size() -> int {
+    [[nodiscard]] auto size() const -> int {
         return this->size_;
+    }
+
+    [[nodiscard]] auto id() const -> std::string {
+        return untokenize(rep, " ");
     }
 
 };
@@ -73,6 +77,10 @@ public:
             std::cout << "token, type: " << token_to_str(t.token_type()) << ", value: " << t.to_str() << "\n";
         }
         find_cluster(tokenized_log);
+    }
+
+    auto get_clusters() -> const std::vector<Cluster> {
+        return clusters;
     }
 
 private:

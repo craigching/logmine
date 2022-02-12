@@ -12,12 +12,12 @@ link_directories(/usr/local/lib)
 add_executable(logmine src/logmine.cpp)
 
 target_include_directories(logmine PUBLIC "${PROJECT_SOURCE_DIR}/include" "${PROJECT_SOURCE_DIR}/lib/sajson/include")
-#target_link_libraries(logmine tbb)
 target_compile_options(logmine PRIVATE -Wno-unknown-warning-option -Wno-tautological-compare -Wno-sign-compare -D_REENTRANT -Wno-ignored-attributes -O3 -DBOOST_DISABLE_ASSERTS)
 
 find_package(Catch2 REQUIRED)
 
 add_executable(logmine_tests tests/src/logmine_tests.cpp)
+target_include_directories(logmine_tests PUBLIC "${PROJECT_SOURCE_DIR}/include" "${PROJECT_SOURCE_DIR}/lib/sajson/include")
 target_include_directories(logmine_tests PUBLIC /usr/local/Cellar/catch2/2.13.4/include "${PROJECT_SOURCE_DIR}/include")
 target_link_libraries(logmine_tests PRIVATE Catch2::Catch2)
 
