@@ -71,11 +71,7 @@ class Logmine {
 
 public:
     void add(const std::string& log) {
-        std::cout << "message: " << log << std::endl;
         std::vector<Token> tokenized_log = tokenize(log);
-        for (auto t : tokenized_log) {
-            std::cout << "token, type: " << token_to_str(t.token_type()) << ", value: " << t.to_str() << "\n";
-        }
         find_cluster(tokenized_log);
     }
 
@@ -101,7 +97,6 @@ private:
 
         if (found_cluster != nullptr) {
             found_cluster->add(log);
-            std::cout << "cluster size: " << found_cluster->size() << std::endl;
         } else {
             clusters.emplace_back(Cluster(log));
         }

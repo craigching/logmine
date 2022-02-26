@@ -115,11 +115,7 @@ TEST_CASE( "test zookeeper logs", "[zookeeper]") {
 
     std::string line;
     while (std::getline(logs, line)) {
-        // std::cout << line << std::endl;
         trim(line);
-        if (line == "2015-07-29 19:21:42,709 - INFO  [/10.10.34.13:3888:QuorumCnxManager$Listener@493] - Received connection request /10.10.34.13:44219") {
-            std::cout << "here" << "\n";
-        }
         model.add(line);
     }
     logs.close();
