@@ -40,7 +40,8 @@ class Cluster {
     int size_;
 
 public:
-    Cluster(std::vector<Token> rep) : rep(std::move(rep)), size_{1} {}
+    Cluster(std::vector<Token> rep) : rep{std::move(rep)}, size_{1} {}
+    Cluster(const Cluster& cluster) = default;
 
     auto cluster_distance(const std::vector<Token>& log) -> float {
         return std::abs(distance(rep, log));
@@ -62,7 +63,6 @@ public:
     [[nodiscard]] auto id() const -> std::string {
         return untokenize(rep, " ");
     }
-
 };
 
 class Logmine {
@@ -93,8 +93,8 @@ private:
         Cluster* found_cluster = nullptr;
         for (auto& cluster : clusters) {
             auto d1 = cluster.cluster_distance(log);
-            // std::cout << "distance: " << d1 << std::endl;
             if (d1 < max_dist && d1 < d) {
+                d = d1;
                 found_cluster = &cluster;
             }
         }
