@@ -31,7 +31,6 @@ auto align2(const std::vector<T>& left, const std::vector<T>& right, const T& GA
             if (i == 0 || j == 0) {
                 grid[i][j] = 0;
             } else {
-                // auto h1 = grid[i - 1][j - 1] + match<T, MATCH_COST>(left[i - 1], right[j - 1]);
                 auto h1 = grid[i - 1][j - 1] + match(left[i - 1], right[j - 1]);
                 auto h2 = grid[i][j - 1] - GAP_COST;
                 auto h3 = grid[i - 1][j] - GAP_COST;
@@ -43,14 +42,7 @@ auto align2(const std::vector<T>& left, const std::vector<T>& right, const T& GA
                     mj = j;
                 }
             }
-            std::cout << grid[i][j];
-            if (grid[i][j] < 10) {
-                std::cout << "  ";
-            } else {
-                std::cout << " ";
-            }
         }
-        std::cout << "\n";
     }
 
     std::vector<T> leftOut;
@@ -58,8 +50,6 @@ auto align2(const std::vector<T>& left, const std::vector<T>& right, const T& GA
 
     auto shouldContinue = true;
     while (shouldContinue) {
-
-        std::cout << "mi: " << mi << ", mj: " << mj << ", grid: " << grid[mi][mj] << std::endl;
 
         auto h1 = grid[mi][mj - 1];
         auto h2 = grid[mi - 1][mj - 1];
@@ -117,12 +107,7 @@ auto align(const std::vector<T>& left, const std::vector<T>& right, const T& GAP
                 tl += grid[i - 1][j - 1];
                 grid[i][j] = std::max(std::max(t, l), tl);
             }
-            if (grid[i][j] >= 0) {
-                std::cout << " ";
-            }
-            std::cout << grid[i][j] << " ";
         }
-        std::cout << "\n";
     }
 
     std::vector<T> leftOut;
